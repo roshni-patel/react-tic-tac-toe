@@ -30,6 +30,11 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
+  const [player, setPlayer] = useState(PLAYER_1);
+
+  const onClickCallback =  () => setSquares(//TODO) also, change player
+
+  // if square id is equal to the square clicked on change value based on player (X or O) then change player 
 
   // Wave 2
   // You will need to create a method to change the square 
