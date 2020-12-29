@@ -32,7 +32,21 @@ const App = () => {
   const [squares, setSquares] = useState(generateSquares());
   const [player, setPlayer] = useState(PLAYER_1);
 
-  const onClickCallback =  () => setSquares(//TODO) also, change player
+  //maybe:
+  const updatePlayer = (updatedPlayer) => {
+
+  }
+
+  const updateSquare = (updatedSquare) => {
+    squares.forEach( (square) => {
+      // is the square I'm looking at the same as the one I've clicked, must be empty
+      if (square.id == updatedSquare.id && square.value == "") {
+        generateSquares(updatedSquare)
+      }
+    })
+  }
+
+  const onClickCallback =  () => (setPlayer(!player), setSquares(//TODO) also, change player
 
   // if square id is equal to the square clicked on change value based on player (X or O) then change player 
 
