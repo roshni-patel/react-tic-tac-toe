@@ -11,9 +11,9 @@ const generateSquares = () => {
 
   let currentId = 0;
 
-  for (let row = 0; row < 3; row += 1) {
+  for (let row = 0; row < 3; row ++) {
     squares.push([]);
-    for (let col = 0; col < 3; col += 1) {
+    for (let col = 0; col < 3; col ++) {
       squares[row].push({
         id: currentId,
         value: '',
@@ -43,35 +43,38 @@ const App = () => {
       }
     }
     setSquares(selected);
+
+    // if turnNumber == 9 call on checkForWinner - this means all the squares are now full
   
   }
 
-  // return if won or occupied https://www.youtube.com/watch?v=08r9mDQvXpU:
-    //if (winner || squares[i]) return;
-    //select square:
-    // squares[i] = xO
-
-  // Wave 2
-  // You will need to create a method to change the square 
-  //   When it is clicked on.
-  //   Then pass it into the squares as a callback
-
-
   const checkForWinner = () => {
-    // Complete in Wave 3
-    // You will need to:
-    // 1. Go accross each row to see if 
-    //    3 squares in the same row match
-    //    i.e. same value
-    // 2. Go down each column to see if
-    //    3 squares in each column match
-    // 3. Go across each diagonal to see if 
-    //    all three squares have the same value.
+    // these are all the ways you can win at tic-tac-toe (https://forum.freecodecamp.org/t/logic-for-tic-tac-toe-win/171590)
+    const winCombos = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+      [1, 5, 9],
+      [3, 5, 7],
+      [1, 4, 7],
+      [2, 5, 8],
+      [3, 6, 9],
+    ]
+// maybe not nested? maybe just check that all three values of the row are either all X or all O?
+    for (let row = 0; row < winCombos.length; row++) {
+      for (let col = 0; col < 3; col++) {
+        //psuedocode 
+        // if (winCombos[row][col] == "X" for all three values in the row) {then X won}
+        // else if (winCombos[row][col] == "O" for all three columns in the row) {then O won} 
+        // else it's a draw, no one won
+      }
+    }
 
   }
 
   const resetGame = () => {
     // Complete in Wave 4
+    // I think we just call on generate squares?
   }
 
   return (
