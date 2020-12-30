@@ -27,23 +27,32 @@ const generateSquares = () => {
 
 const App = () => {
 
-  // This starts state off as a 2D array of JS objects with
-  // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
   const [turnNumber, setTurnNumber] = useState(0);
   const [player, setPlayer] = useState(PLAYER_1);
 
   const onClickCallback = (id) => {
     const selected = [...squares];
-    for (let row = 0; row < squares.length; row += 1) {
-      for (let col = 0; col < squares[0].length; col += 1) {
+    for (let row = 0; row < 3; row += 1) {
+      for (let col = 0; col < 3; col += 1) {
         if (squares[row][col].id === id && squares[row][col].value === '') {
           squares[row][col].value = player;
+    // why won't this work? 
+    // setPlayer(!player); instead:
+
+        player === PLAYER_1? setPlayer(PLAYER_2) : setPlayer(PLAYER_1)
+          // changed below to ternary
+          // if (player === PLAYER_1) {
+          //   setPlayer(PLAYER_2)}
+          //   else {
+          //     setPlayer(PLAYER_1)
+          //   }; 
+          setTurnNumber(turnNumber + 1);
         }
       }
     }
-    setPlayer(!player); 
-    setTurnNumber(turnNumber + 1);
+
+
     setSquares(selected);
   
   }
