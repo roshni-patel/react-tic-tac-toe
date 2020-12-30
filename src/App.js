@@ -30,25 +30,28 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
+  const [turnNumber, setTurnNumber] = useState(0);
   const [player, setPlayer] = useState(PLAYER_1);
 
-  //maybe:
-  const updatePlayer = (updatedPlayer) => {
-
-  }
-
-  const updateSquare = (updatedSquare) => {
-    squares.forEach( (square) => {
-      // is the square I'm looking at the same as the one I've clicked, must be empty
-      if (square.id == updatedSquare.id && square.value == "") {
-        generateSquares(updatedSquare)
+  const onClickCallback = (id) => {
+    const selected = [...squares];
+    for (let row = 0; row < squares.length; row += 1) {
+      for (let col = 0; col < squares[0].length; col += 1) {
+        if (squares[row][col].id === id && squares[row][col].value === '') {
+          squares[row][col].value = player;
+        }
       }
-    })
+    }
+    setPlayer(!player); 
+    setTurnNumber(turnNumber + 1);
+    setSquares(selected);
+  
   }
 
-  const onClickCallback =  () => (setPlayer(!player), setSquares(//TODO) also, change player
-
-  // if square id is equal to the square clicked on change value based on player (X or O) then change player 
+  // return if won or occupied https://www.youtube.com/watch?v=08r9mDQvXpU:
+    //if (winner || squares[i]) return;
+    //select square:
+    // squares[i] = xO
 
   // Wave 2
   // You will need to create a method to change the square 
@@ -81,7 +84,9 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} />
+        <Board 
+        squares={squares} 
+        onClickCallback={onClickCallback}/>
       </main>
     </div>
   );
