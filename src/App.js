@@ -45,8 +45,8 @@ const App = () => {
     }
     setSquares(squares);
 
-    if (turnNumber >= 3) {
-    setWinner(checkForWinner());
+    if (turnNumber > 3) {
+      setWinner(checkForWinner());
     }
   
   }
@@ -68,6 +68,7 @@ const App = () => {
     const board = [ ...firstRow, ...secondRow, ...thirdRow];
     const xOPositions = [];
     
+    // board = ['','X','','O','','X','X','X' ]
     for (let i = 0; i < winCombos.length; i++) {
       
       const position1 = board[winCombos[i][0]];
@@ -104,8 +105,21 @@ const App = () => {
     <div className="App">
       <header className="App-header">
       <h1>React Tic Tac Toe</h1>
-      {(winner === '') ? <h2>Current Player {player} </h2> :
-        <h2>Winner is {winner}</h2>}
+      { winner != '' &&
+      <h2>
+        Winner is {winner}
+      </h2>
+       }
+      {winner === '' && turnNumber === 9 && 
+      <h2>
+        TIE!
+      </h2> 
+      }
+      { winner === '' && turnNumber < 9 &&
+      <h2>
+        Current Player {player}
+      </h2>
+      } 
       <button
         onClick={onClick}
         >Reset Game</button>
