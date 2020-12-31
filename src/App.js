@@ -34,7 +34,6 @@ const App = () => {
 
   const onClickCallback = (id) => {
     if (winner === '') {
-    //const selected = squares;
     for (let row = 0; row < 3; row += 1) {
       for (let col = 0; col < 3; col += 1) {
         if (squares[row][col].id === id && squares[row][col].value === '') {
@@ -65,7 +64,6 @@ const App = () => {
       [2, 4, 6]
     ]
 
-    //board = ["O", "X", "", "", "X", "O", "", "X", "",]
     const [firstRow, secondRow, thirdRow] = squares; 
     const board = [ ...firstRow, ...secondRow, ...thirdRow];
     const xOPositions = [];
@@ -92,8 +90,14 @@ const App = () => {
   }
 
   const resetGame = () => {
-    // Complete in Wave 4
-    // I think we just call on generate squares?
+    setSquares(generateSquares());
+    setTurnNumber(0);
+    setWinner('');
+    setPlayer(PLAYER_1); 
+  }
+
+  const onClick = () => {
+    resetGame()
   }
 
   return (
@@ -101,7 +105,9 @@ const App = () => {
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
         <h2>Winner is {winner}</h2>
-        <button>Reset Game</button>
+        <button
+        onClick={onClick}
+        >Reset Game</button>
       </header>
       <main>
         <Board 
@@ -113,3 +119,4 @@ const App = () => {
 }
 
 export default App;
+
