@@ -29,12 +29,12 @@ const App = () => {
 
   const [squares, setSquares] = useState(generateSquares());
   const [turnNumber, setTurnNumber] = useState(0);
-  const [winner, setWinner] = useState(null);
+  const [winner, setWinner] = useState('');
   const [player, setPlayer] = useState(PLAYER_1);
 
   const onClickCallback = (id) => {
-    if (winner === null) {
-    const selected = squares;
+    if (winner === '') {
+    //const selected = squares;
     for (let row = 0; row < 3; row += 1) {
       for (let col = 0; col < 3; col += 1) {
         if (squares[row][col].id === id && squares[row][col].value === '') {
@@ -44,10 +44,11 @@ const App = () => {
         }
       }
     }
-    setSquares(selected);
-    setWinner(checkForWinner());
+    setSquares(squares);
 
-    // if turnNumber == 9 call on checkForWinner - this means all the squares are now full
+    if (turnNumber >= 3) {
+    setWinner(checkForWinner());
+    }
   
   }
 }
@@ -63,30 +64,30 @@ const App = () => {
       [0, 4, 8],
       [2, 4, 6]
     ]
-    const [firstRow, secondRow, thirdRow] = squares;
+
+    //board = ["O", "X", "", "", "X", "O", "", "X", "",]
+    const [firstRow, secondRow, thirdRow] = squares; 
     const board = [ ...firstRow, ...secondRow, ...thirdRow];
     const xOPositions = [];
     
     for (let i = 0; i < winCombos.length; i++) {
       
-      const position1 = board[winCombos[i][0]]
-      const position2 = board[winCombos[i][1]]
+      const position1 = board[winCombos[i][0]];
+      const position2 = board[winCombos[i][1]];
       const position3 = board[winCombos[i][2]]
-      xOPositions.push([position1, position2, position3])
+      xOPositions.push([position1, position2, position3]);;
     }
 
-    for (let i = 0; i < xOPositions; i++) {
-      if (xOPositions[i][0] === 'X' && xOPositions[i][1] === 'X' && xOPositions[i][2] === 'X') {
-        setWinner(PLAYER_1)
+    for (let i = 0; i < xOPositions.length; i++) {
+      if (xOPositions[i][0].value === 'x' && xOPositions[i][1].value === 'x' && xOPositions[i][2].value === 'x')
         return PLAYER_1
       }
-      else if (xOPositions[i][0] === 'O' && xOPositions[i][1] === 'O' && xOPositions[i][2] === 'O') {
-        setWinner(PLAYER_2)
+      else if (xOPositions[i][0].value === 'o' && xOPositions[i][1].value === 'o' && xOPositions[i][2].value === 'o') 
         return PLAYER_2
       }
     }
 
-    setWinner(null)
+    return '';
 
   }
 
