@@ -79,10 +79,10 @@ const App = () => {
     }
 
     for (let i = 0; i < xOPositions.length; i++) {
-      if (xOPositions[i][0].value === 'x' && xOPositions[i][1].value === 'x' && xOPositions[i][2].value === 'x')
+      if (xOPositions[i][0].value === 'x' && xOPositions[i][1].value === 'x' && xOPositions[i][2].value === 'x') {
         return PLAYER_1
       }
-      else if (xOPositions[i][0].value === 'o' && xOPositions[i][1].value === 'o' && xOPositions[i][2].value === 'o') 
+      else if (xOPositions[i][0].value === 'o' && xOPositions[i][1].value === 'o' && xOPositions[i][2].value === 'o') {
         return PLAYER_2
       }
     }
@@ -100,7 +100,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is {winner}</h2>
+        <h2>Winner is {winner}</h2>
         <button>Reset Game</button>
       </header>
       <main>
